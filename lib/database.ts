@@ -1,3 +1,5 @@
+import { kv } from "@vercel/kv";
+
 export interface LunchPlace {
   id: number;
   name: string;
@@ -6,7 +8,8 @@ export interface LunchPlace {
   distance: number; // in km
 }
 
-export const lunchPlaces: LunchPlace[] = [
+// Default lunch places to initialize the database
+const defaultPlaces: LunchPlace[] = [
   {
     id: 1,
     name: "Burger Hub",
@@ -78,3 +81,50 @@ export const lunchPlaces: LunchPlace[] = [
     distance: 1.8,
   },
 ];
+
+export async function initializeDatabase() {
+  try {
+    const existing = await kv.get("lunch-places");
+    if (!existing) {
+      await kv.set("lunch-places", JSON.stringify(defaultPlaces));
+    }
+  } catch (error) {
+    console.log(
+      "KV not available (local development). Using default places."
+    );
+  }
+}
+
+export async function getAllPlaces(): Promise<LunchPlace[]> {
+  try {
+    const places = await kv.get("lunch-places");
+    return places ? JSON.parse(places as string) : defaultPlaces;
+  } catch (error) {
+    console.log("KV not available. Using default places.");
+    return defaultPlaces;
+  }
+}
+
+export async function addPlace(
+  place: Omit<LunchPlace, "id">
+): Promise<LunchPlace> {
+  try {
+    const places = await getAllPlaces();
+    const newPlace: LunchPlace = {
+      ...place,
+      id: Math.max(...places.map((p) => p.id), 0) + 1,
+    };
+    places.push(newPlace);
+    await kv.set("lunch-places", JSON.stringify(places));
+    return newPlace;
+  } catch (error) {
+    console.error("Error adding place:", error);
+    throw error;
+  }
+}
+
+export async function getRandomPlace(): Promise<LunchPlace> {
+  const places = await getAllPlaces();
+  const randomIndex = Math.floor(Math.random() * places.length);
+  return places[randomIndex];
+}

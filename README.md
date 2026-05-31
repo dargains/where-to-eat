@@ -1,11 +1,13 @@
 # Where to Eat - Lunch Suggestion App
 
-A simple Next.js web app that suggests random lunch places from a database.
+A simple Next.js web app that suggests random lunch places from a database. Users can get random suggestions or add their own places to the collection.
 
 ## Features
 
 - 🎲 Get random lunch place suggestions
 - 📍 View restaurant details: name, address, price level, and distance
+- ➕ Add new lunch places via a form
+- 💾 Persistent storage with Vercel KV
 - ⚡ Built with Next.js 14 and React
 - 🎨 Clean and responsive UI
 
@@ -30,12 +32,17 @@ Each lunch place has:
 npm install
 ```
 
-2. Run the development server:
+2. Set up environment variables (for Vercel KV):
+   - Copy `.env.local.example` to `.env.local`
+   - For local development, you can skip this—the app will use default data
+   - For production, add your Vercel KV connection details
+
+3. Run the development server:
 ```bash
 npm run dev
 ```
 
-3. Open your browser and navigate to `http://localhost:3000`
+4. Open your browser and navigate to `http://localhost:3000`
 
 ## Project Structure
 
@@ -43,15 +50,22 @@ npm run dev
 where-to-eat/
 ├── app/
 │   ├── api/
-│   │   └── random-place/
-│   │       └── route.ts          # API endpoint to get random place
+│   │   ├── random-place/
+│   │   │   └── route.ts          # Get random place endpoint
+│   │   └── add-place/
+│   │       └── route.ts          # Add new place endpoint
+│   ├── add-place/
+│   │   └── page.tsx              # Add place form page
 │   ├── globals.css               # Global styles
 │   ├── layout.tsx                # Root layout
 │   └── page.tsx                  # Home page
 ├── components/
-│   └── LunchSuggester.tsx        # Main component
+│   ├── LunchSuggester.tsx        # Main suggestion component
+│   ├── LunchSuggester.module.css # Suggestion component styles
+│   ├── AddPlace.tsx              # Add place form component
+│   └── AddPlace.module.css       # Form component styles
 ├── lib/
-│   └── database.ts               # Mock database and types
+│   └── database.ts               # Database functions and types
 └── package.json
 ```
 
@@ -62,9 +76,22 @@ where-to-eat/
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 
+## Vercel KV Setup
+
+For production deployment on Vercel:
+
+1. Create a Vercel account at https://vercel.com
+2. Create a new project
+3. Add a KV database from the Vercel marketplace
+4. Deploy your app
+5. The environment variables will be automatically injected by Vercel
+
+See `.env.local.example` for more details.
+
 ## Customization
 
-To add more lunch places, edit the `lunchPlaces` array in `lib/database.ts`.
+- To edit the default lunch places, modify the `defaultPlaces` array in `lib/database.ts`
+- To change styling, update the CSS modules in the `components/` folder
 
 ## License
 

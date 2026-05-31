@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Link from "next/link";
 import { LunchPlace } from "@/lib/database";
 import styles from "./LunchSuggester.module.css";
 
@@ -40,6 +41,10 @@ export default function LunchSuggester() {
       >
         {loading ? "Loading..." : "Get Random Place"}
       </button>
+
+      <Link href="/add-place" className={styles.addLink}>
+        + Add New Place
+      </Link>
 
       {place && (
         <div className={styles.resultCard}>
