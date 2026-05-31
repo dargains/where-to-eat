@@ -1,41 +1,45 @@
 # Where to Eat - Lunch Suggestion App
 
-A simple Next.js web app that suggests random lunch places from a database. Users can get random suggestions or add their own places to the collection.
+A simple Next.js web app that suggests random lunch places from a MongoDB database. Users can get random suggestions or add their own places to the collection.
 
 ## Features
 
 - 🎲 Get random lunch place suggestions
 - 📍 View restaurant details: name, address, price level, and distance
 - ➕ Add new lunch places via a form
-- 💾 Persistent storage with Vercel KV
-- ⚡ Built with Next.js 14 and React
+- 💾 Persistent storage with MongoDB Atlas
+- ⚡ Built with Next.js 14, React, and Mongoose
 - 🎨 Clean and responsive UI
 
 ## Database Structure
 
-Each lunch place has:
+Each lunch place document has:
 - **name**: Restaurant name
 - **address**: Physical address
 - **price**: Price level (1-3: 1=budget, 2=moderate, 3=expensive)
 - **distance**: Distance from workplace in kilometers
+- **createdAt**: Timestamp when the place was added
 
 ## Getting Started
 
 ### Prerequisites
 
 - Node.js 18+ and npm
+- MongoDB Atlas account (free tier available at https://www.mongodb.com/cloud/atlas)
 
 ### Installation
 
-1. Install dependencies:
+1. Set up MongoDB Atlas:
+   - Create a free cluster at https://www.mongodb.com/cloud/atlas
+   - Create a database user with read/write permissions
+   - Get your connection string from the cluster connection dialog
+   - Copy `.env.local.example` to `.env.local`
+   - Replace `username:password@cluster-name` in the `MONGODB_URI` with your actual credentials
+
+2. Install dependencies:
 ```bash
 npm install
 ```
-
-2. Set up environment variables (for Vercel KV):
-   - Copy `.env.local.example` to `.env.local`
-   - For local development, you can skip this—the app will use default data
-   - For production, add your Vercel KV connection details
 
 3. Run the development server:
 ```bash
@@ -56,7 +60,7 @@ where-to-eat/
 │   │       └── route.ts          # Add new place endpoint
 │   ├── add-place/
 │   │   └── page.tsx              # Add place form page
-│   ├── globals.css               # Global styles
+│   ├── globals.css               # Global styles with CSS variables
 │   ├── layout.tsx                # Root layout
 │   └── page.tsx                  # Home page
 ├── components/
@@ -65,7 +69,10 @@ where-to-eat/
 │   ├── AddPlace.tsx              # Add place form component
 │   └── AddPlace.module.css       # Form component styles
 ├── lib/
-│   └── database.ts               # Database functions and types
+│   ├── database.ts               # Database functions and types
+│   ├── mongodb.ts                # MongoDB connection setup
+│   └── models/
+│       └── LunchPlace.ts         # Mongoose schema and model
 └── package.json
 ```
 
@@ -76,22 +83,37 @@ where-to-eat/
 - `npm start` - Start production server
 - `npm run lint` - Run ESLint
 
-## Vercel KV Setup
+## MongoDB Atlas Setup
 
-For production deployment on Vercel:
+### Local Development
 
-1. Create a Vercel account at https://vercel.com
-2. Create a new project
-3. Add a KV database from the Vercel marketplace
-4. Deploy your app
-5. The environment variables will be automatically injected by Vercel
+1. Create a `.env.local` file in the root directory (copy from `.env.local.example`)
+2. Add your MongoDB Atlas connection string:
+   ```
+   MONGODB_URI=mongodb+srv://username:password@cluster-name.mongodb.net/where-to-eat?retryWrites=true&w=majority
+   ```
 
-See `.env.local.example` for more details.
+### Production Deployment (Vercel)
+
+1. Deploy your app to Vercel
+2. In the Vercel dashboard, go to Settings → Environment Variables
+3. Add your `MONGODB_URI` environment variable
+4. Redeploy your app
 
 ## Customization
 
 - To edit the default lunch places, modify the `defaultPlaces` array in `lib/database.ts`
 - To change styling, update the CSS modules in the `components/` folder
+- To modify the data schema, update `lib/models/LunchPlace.ts`
+
+## Future Features
+
+With MongoDB, you can easily add:
+- Search and filter by price or distance
+- User ratings and reviews
+- User authentication and favorites
+- Place update and delete functionality
+- Statistics and analytics
 
 ## License
 

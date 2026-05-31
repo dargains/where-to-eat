@@ -1,130 +1,155 @@
-import { kv } from "@vercel/kv";
+import { connectDB } from "./mongodb";
+import { LunchPlaceModel } from "./models/LunchPlace";
 
-export interface LunchPlace {
-  id: number;
-  name: string;
-  address: string;
-  price: 1 | 2 | 3; // 1: budget, 2: moderate, 3: expensive
-  distance: number; // in km
-}
-
-// Default lunch places to initialize the database
-const defaultPlaces: LunchPlace[] = [
+// Default lunch places for initialization
+const defaultPlaces = [
   {
-    id: 1,
     name: "Burger Hub",
     address: "123 Main Street",
-    price: 1,
+    price: 1 as const,
     distance: 0.5,
   },
   {
-    id: 2,
     name: "Sushi Paradise",
     address: "456 Oak Avenue",
-    price: 3,
+    price: 3 as const,
     distance: 1.2,
   },
   {
-    id: 3,
     name: "Taco Tuesday",
     address: "789 Elm Road",
-    price: 1,
+    price: 1 as const,
     distance: 0.8,
   },
   {
-    id: 4,
     name: "Italian Trattoria",
     address: "321 Pine Lane",
-    price: 2,
+    price: 2 as const,
     distance: 1.5,
   },
   {
-    id: 5,
     name: "Thai Express",
     address: "654 Cedar Street",
-    price: 2,
+    price: 2 as const,
     distance: 0.9,
   },
   {
-    id: 6,
     name: "Pizza Place",
     address: "987 Maple Drive",
-    price: 1,
+    price: 1 as const,
     distance: 0.6,
   },
   {
-    id: 7,
     name: "Vietnamese Pho",
     address: "147 Birch Way",
-    price: 1,
+    price: 1 as const,
     distance: 1.1,
   },
   {
-    id: 8,
     name: "French Bistro",
     address: "258 Spruce Boulevard",
-    price: 3,
+    price: 3 as const,
     distance: 2.0,
   },
   {
-    id: 9,
     name: "Indian Curry House",
     address: "369 Willow Court",
-    price: 2,
+    price: 2 as const,
     distance: 1.3,
   },
   {
-    id: 10,
     name: "Korean BBQ",
     address: "741 Aspen Street",
-    price: 2,
+    price: 2 as const,
     distance: 1.8,
   },
 ];
 
+export interface LunchPlaceDTO {
+  _id?: string;
+  name: string;
+  address: string;
+  price: 1 | 2 | 3;
+  distance: number;
+}
+
 export async function initializeDatabase() {
   try {
-    const existing = await kv.get("lunch-places");
-    if (!existing) {
-      await kv.set("lunch-places", JSON.stringify(defaultPlaces));
+    await connectDB();
+    const count = await LunchPlaceModel.countDocuments();
+
+    if (count === 0) {
+      await LunchPlaceModel.insertMany(defaultPlaces);
+      console.log("Database initialized with default places");
     }
   } catch (error) {
-    console.log(
-      "KV not available (local development). Using default places."
-    );
+    console.error("Error initializing database:", error);
   }
 }
 
-export async function getAllPlaces(): Promise<LunchPlace[]> {
+export async function getAllPlaces(): Promise<LunchPlaceDTO[]> {
   try {
-    const places = await kv.get("lunch-places");
-    return places ? JSON.parse(places as string) : defaultPlaces;
+    await connectDB();
+    const places = await LunchPlaceModel.find().lean();
+    return places.map((place) => ({
+      _id: place._id.toString(),
+      name: place.name,
+      address: place.address,
+      price: place.price,
+      distance: place.distance,
+    }));
   } catch (error) {
-    console.log("KV not available. Using default places.");
-    return defaultPlaces;
+    console.error("Error fetching places:", error);
+    return [];
   }
 }
 
 export async function addPlace(
-  place: Omit<LunchPlace, "id">
-): Promise<LunchPlace> {
+  place: Omit<LunchPlaceDTO, "_id">
+): Promise<LunchPlaceDTO> {
   try {
-    const places = await getAllPlaces();
-    const newPlace: LunchPlace = {
-      ...place,
-      id: Math.max(...places.map((p) => p.id), 0) + 1,
+    await connectDB();
+    const newPlace = await LunchPlaceModel.create(place);
+    return {
+      _id: newPlace._id.toString(),
+      name: newPlace.name,
+      address: newPlace.address,
+      price: newPlace.price,
+      distance: newPlace.distance,
     };
-    places.push(newPlace);
-    await kv.set("lunch-places", JSON.stringify(places));
-    return newPlace;
   } catch (error) {
     console.error("Error adding place:", error);
     throw error;
   }
 }
 
-export async function getRandomPlace(): Promise<LunchPlace> {
-  const places = await getAllPlaces();
-  const randomIndex = Math.floor(Math.random() * places.length);
-  return places[randomIndex];
+export async function getRandomPlace(): Promise<LunchPlaceDTO> {
+  try {
+    await connectDB();
+    const count = await LunchPlaceModel.countDocuments();
+
+    if (count === 0) {
+      throw new Error("No lunch places available");
+    }
+
+    const randomIndex = Math.floor(Math.random() * count);
+    const randomPlace = await LunchPlaceModel.findOne()
+      .skip(randomIndex)
+      .lean();
+
+    if (!randomPlace) {
+      throw new Error("Failed to fetch random place");
+    }
+
+    return {
+      _id: randomPlace._id.toString(),
+      name: randomPlace.name,
+      address: randomPlace.address,
+      price: randomPlace.price,
+      distance: randomPlace.distance,
+    };
+  } catch (error) {
+    console.error("Error fetching random place:", error);
+    throw error;
+  }
 }

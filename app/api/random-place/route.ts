@@ -2,6 +2,14 @@ import { getRandomPlace } from "@/lib/database";
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const randomPlace = await getRandomPlace();
-  return NextResponse.json(randomPlace);
+  try {
+    const randomPlace = await getRandomPlace();
+    return NextResponse.json(randomPlace);
+  } catch (error) {
+    console.error("Error fetching random place:", error);
+    return NextResponse.json(
+      { error: "Failed to fetch random place" },
+      { status: 500 }
+    );
+  }
 }

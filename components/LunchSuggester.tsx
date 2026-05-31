@@ -2,11 +2,11 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { LunchPlace } from "@/lib/database";
+import { LunchPlaceDTO } from "@/lib/database";
 import styles from "./LunchSuggester.module.css";
 
 export default function LunchSuggester() {
-  const [place, setPlace] = useState<LunchPlace | null>(null);
+  const [place, setPlace] = useState<LunchPlaceDTO | null>(null);
   const [loading, setLoading] = useState(false);
 
   const getPriceLabel = (price: number) => {
