@@ -1,0 +1,65 @@
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.title {
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.button {
+  padding: 12px 24px;
+  font-size: 16px;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 30px;
+  transition: opacity 0.2s;
+}
+
+.button:hover:not(:disabled) {
+  opacity: 0.9;
+}
+
+.button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.resultCard {
+  background-color: #f5f5f5;
+  padding: 30px;
+  border-radius: 8px;
+  text-align: left;
+  border: 2px solid #0070f3;
+}
+
+.restaurantName {
+  margin: 0 0 20px 0;
+  color: #0070f3;
+}
+
+.infoSection {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #555;
+}
+
+.infoItem {
+  margin: 10px 0;
+}
+
+.infoItem strong {
+  font-weight: 600;
+}
+
+.placeholderText {
+  color: #999;
+  font-size: 16px;
+  margin-top: 20px;
+}
