@@ -5,11 +5,13 @@ A simple Next.js web app that suggests random lunch places from a MongoDB databa
 ## Features
 
 - 🎲 Get random lunch place suggestions
+- 🎉 Dynamic greeting messages with random Portuguese phrases
 - 📍 View restaurant details: name, address, price level, and distance
 - ➕ Add new lunch places via a form
 - 💾 Persistent storage with MongoDB Atlas
 - ⚡ Built with Next.js 14, React, and Mongoose
 - 🎨 Clean and responsive UI
+- 🍴 Favicon and comprehensive metadata for SEO
 
 ## Database Structure
 
@@ -61,10 +63,10 @@ where-to-eat/
 │   ├── add-place/
 │   │   └── page.tsx              # Add place form page
 │   ├── globals.css               # Global styles with CSS variables
-│   ├── layout.tsx                # Root layout
+│   ├── layout.tsx                # Root layout with metadata
 │   └── page.tsx                  # Home page
 ├── components/
-│   ├── LunchSuggester.tsx        # Main suggestion component
+│   ├── LunchSuggester.tsx        # Main suggestion component with random phrases
 │   ├── LunchSuggester.module.css # Suggestion component styles
 │   ├── AddPlace.tsx              # Add place form component
 │   └── AddPlace.module.css       # Form component styles
@@ -73,6 +75,8 @@ where-to-eat/
 │   ├── mongodb.ts                # MongoDB connection setup
 │   └── models/
 │       └── LunchPlace.ts         # Mongoose schema and model
+├── public/
+│   └── favicon.svg               # App favicon (fork and knife emoji)
 └── package.json
 ```
 
