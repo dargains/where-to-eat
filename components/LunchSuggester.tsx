@@ -9,6 +9,8 @@ const LUNCH_PHRASES = [
   "estou cheio de fome!",
   "já são 12h!",
   "é hora!",
+  "faz logo push!",
+  "fecha o portátil!",
   "vamos logo!",
   "tenho fome!",
   "vamos lá!",
