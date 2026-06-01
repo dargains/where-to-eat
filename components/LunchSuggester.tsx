@@ -54,17 +54,19 @@ export default function LunchSuggester() {
         Bora almoçar, {phrase}
       </h1>
 
-      <button
-        onClick={handleGetSuggestion}
-        disabled={loading}
-        className={styles.button}
-      >
-        {loading ? "Que fome..." : "Dá-me um lugar!"}
-      </button>
+      <div className={styles.buttonsSection}>
+        <button
+          onClick={handleGetSuggestion}
+          disabled={loading}
+          className={styles.button}
+        >
+          {loading ? "Que fome..." : "Dá-me um lugar!"}
+        </button>
 
-      <Link href="/add-place" className={styles.addLink}>
-        + Adicionar restaurante
-      </Link>
+        <Link href="/add-place" className={styles.addLink}>
+          + Adicionar restaurante
+        </Link>
+      </div>
 
       {place && (
         <div className={styles.resultCard}>

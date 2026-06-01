@@ -2,11 +2,13 @@
   max-width: 600px;
   margin: 0 auto;
   padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
 }
 
 .backLink {
   display: inline-block;
-  margin-bottom: 30px;
   color: var(--color-text-white);
   text-decoration: none;
   font-size: 14px;
@@ -19,7 +21,6 @@
 }
 
 .title {
-  margin-bottom: 30px;
   color: var(--color-text-white);
   text-align: center;
 }
@@ -29,10 +30,9 @@
   padding: 30px;
   border-radius: 8px;
   border: 2px solid var(--color-primary);
-}
-
-.formGroup {
-  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
 }
 
 .formRow {
