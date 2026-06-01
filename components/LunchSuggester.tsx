@@ -10,9 +10,9 @@ export default function LunchSuggester() {
   const [loading, setLoading] = useState(false);
 
   const getPriceLabel = (price: number) => {
-    if (price === 1) return "$";
-    if (price === 2) return "$$";
-    return "$$$";
+    if (price === 1) return "€";
+    if (price === 2) return "€€";
+    return "€€€";
   };
 
   const handleGetSuggestion = async () => {

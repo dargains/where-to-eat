@@ -133,9 +133,9 @@ export default function AddPlace() {
               className={styles.select}
               disabled={loading}
             >
-              <option value={1}>$ - Baratinho</option>
-              <option value={2}>$$ - Médio</option>
-              <option value={3}>$$$ - Caro</option>
+              <option value={1}>€ - Baratinho</option>
+              <option value={2}>€€ - Médio</option>
+              <option value={3}>€€€ - Caro</option>
             </select>
           </div>
 
