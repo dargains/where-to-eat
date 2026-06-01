@@ -53,7 +53,14 @@ export default function LunchSuggester() {
           </h2>
           <div className={styles.infoSection}>
             <p className={styles.infoItem}>
-              <strong>Endereço:</strong> {place.address}
+              <strong>Endereço:</strong>{" "}
+              <a
+                href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {place.address}
+              </a>
             </p>
             <p className={styles.infoItem}>
               <strong>Nível de Preço:</strong> {getPriceLabel(place.price)}
