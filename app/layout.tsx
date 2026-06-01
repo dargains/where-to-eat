@@ -2,15 +2,15 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Where to Eat",
+  title: "Bora almoçar!",
   description: "Get random lunch place suggestions",
   viewport: "width=device-width, initial-scale=1",
   icons: {
     icon: "/favicon.svg",
   },
-  authors: [{ name: "Where to Eat Team" }],
+  authors: [{ name: "André Dargains" }],
   openGraph: {
-    title: "Where to Eat",
+    title: "Bora almoçar!",
     description: "Get random lunch place suggestions",
     type: "website",
   },
