@@ -62,7 +62,7 @@ export default function LunchSuggester() {
           disabled={loading}
           className={styles.button}
         >
-          {loading ? "Que fome..." : place ? "Ahh esse não, diz-me outro" : "Dá-me um lugar!"}
+          {loading ? "Que fome..." : place ? "Ahh esse não, quero outro" : "Dá-me um lugar faixavor!"}
         </button>
 
         <Link href="/add-place" className={styles.addLink}>
