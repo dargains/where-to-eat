@@ -34,7 +34,7 @@ export default function AddPlace() {
 
     try {
       if (!formData.name || !formData.address || !formData.distance) {
-        setMessage({ type: "error", text: "Please fill in all fields" });
+        setMessage({ type: "error", text: "Por favor, preencha todos os campos" });
         setLoading(false);
         return;
       }
@@ -43,7 +43,7 @@ export default function AddPlace() {
       if (isNaN(distance) || distance < 0) {
         setMessage({
           type: "error",
-          text: "Distance must be a positive number",
+          text: "A distância deve ser um número positivo",
         });
         setLoading(false);
         return;
@@ -61,18 +61,18 @@ export default function AddPlace() {
       });
 
       if (!response.ok) {
-        throw new Error("Failed to add place");
+        throw new Error("Erro ao adicionar restaurante");
       }
 
       setMessage({
         type: "success",
-        text: `${formData.name} added successfully!`,
+        text: `${formData.name} adicionado com sucesso!`,
       });
       setFormData({ name: "", address: "", price: 2, distance: "" });
     } catch (error) {
       setMessage({
         type: "error",
-        text: error instanceof Error ? error.message : "Failed to add place",
+        text: error instanceof Error ? error.message : "Erro ao adicionar restaurante",
       });
     } finally {
       setLoading(false);
@@ -82,15 +82,15 @@ export default function AddPlace() {
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.backLink}>
-        ← Back to Suggestions
+        ← Voltar
       </Link>
 
-      <h1 className={styles.title}>Add a New Lunch Place</h1>
+      <h1 className={styles.title}>Adicionar Novo Restaurante</h1>
 
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.label}>
-            Restaurant Name
+            Nome do Restaurante
           </label>
           <input
             type="text"
@@ -98,7 +98,7 @@ export default function AddPlace() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            placeholder="e.g., Pizza Palace"
+            placeholder="ex., Pizza Cenas"
             className={styles.input}
             disabled={loading}
           />
@@ -106,7 +106,7 @@ export default function AddPlace() {
 
         <div className={styles.formGroup}>
           <label htmlFor="address" className={styles.label}>
-            Address
+            Endereço
           </label>
           <input
             type="text"
@@ -114,7 +114,7 @@ export default function AddPlace() {
             name="address"
             value={formData.address}
             onChange={handleChange}
-            placeholder="e.g., 123 Main Street"
+            placeholder="ex., Rua das Cenas, 42"
             className={styles.input}
             disabled={loading}
           />
@@ -123,7 +123,7 @@ export default function AddPlace() {
         <div className={styles.formRow}>
           <div className={styles.formGroup}>
             <label htmlFor="price" className={styles.label}>
-              Price Level
+              Nível de Preço
             </label>
             <select
               id="price"
@@ -133,15 +133,15 @@ export default function AddPlace() {
               className={styles.select}
               disabled={loading}
             >
-              <option value={1}>$ - Budget</option>
-              <option value={2}>$$ - Moderate</option>
-              <option value={3}>$$$ - Expensive</option>
+              <option value={1}>$ - Baratinho</option>
+              <option value={2}>$$ - Médio</option>
+              <option value={3}>$$$ - Caro</option>
             </select>
           </div>
 
           <div className={styles.formGroup}>
             <label htmlFor="distance" className={styles.label}>
-              Distance (km)
+              Distância (km)
             </label>
             <input
               type="number"
@@ -149,7 +149,7 @@ export default function AddPlace() {
               name="distance"
               value={formData.distance}
               onChange={handleChange}
-              placeholder="e.g., 1.5"
+              placeholder="ex., 1.5"
               step="0.1"
               min="0"
               className={styles.input}
@@ -163,7 +163,7 @@ export default function AddPlace() {
           disabled={loading}
           className={styles.submitButton}
         >
-          {loading ? "Adding..." : "Add Place"}
+          {loading ? "A adicionar..." : "Adicionar Restaurante"}
         </button>
       </form>
 

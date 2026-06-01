@@ -39,11 +39,11 @@ export default function LunchSuggester() {
         disabled={loading}
         className={styles.button}
       >
-        {loading ? "Loading..." : "Get Random Place"}
+        {loading ? "Que fome..." : "Dá-me um lugar!"}
       </button>
 
       <Link href="/add-place" className={styles.addLink}>
-        + Add New Place
+        + Adicionar restaurante
       </Link>
 
       {place && (
@@ -53,22 +53,16 @@ export default function LunchSuggester() {
           </h2>
           <div className={styles.infoSection}>
             <p className={styles.infoItem}>
-              <strong>Address:</strong> {place.address}
+              <strong>Endereço:</strong> {place.address}
             </p>
             <p className={styles.infoItem}>
-              <strong>Price Level:</strong> {getPriceLabel(place.price)}
+              <strong>Nível de Preço:</strong> {getPriceLabel(place.price)}
             </p>
             <p className={styles.infoItem}>
-              <strong>Distance:</strong> {place.distance} km
+              <strong>Distância:</strong> {place.distance} km
             </p>
           </div>
         </div>
-      )}
-
-      {!place && (
-        <p className={styles.placeholderText}>
-          Click the button to get a lunch suggestion!
-        </p>
       )}
     </div>
   );
