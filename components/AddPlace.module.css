@@ -3,6 +3,7 @@
   margin: 0 auto;
   padding: 40px 20px;
   display: flex;
+  align-items: flex-start;
   flex-direction: column;
   gap: 40px;
 }
@@ -26,6 +27,7 @@
 }
 
 .form {
+  width: 100%;
   background-color: var(--color-bg-light);
   padding: 30px;
   border-radius: 8px;
