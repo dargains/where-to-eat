@@ -70,24 +70,22 @@ export default function LunchSuggester() {
             <h2 className={styles.restaurantName}>
               {place.name}
             </h2>
-            <div className={styles.infoSection}>
-              <p className={styles.infoItem}>
-                <strong>Endereço:</strong>{" "}
-                <a
-                  href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  {place.address}
-                </a>
-              </p>
-              <p className={styles.infoItem}>
-                <strong>Nível de Preço:</strong> {getPriceLabel(place.price)}
-              </p>
-              <p className={styles.infoItem}>
-                <strong>Distância:</strong> {place.distance} km
-              </p>
-            </div>
+            <p className={styles.infoItem}>
+              <strong>Endereço:</strong>{" "}
+              <a
+                href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {place.address}
+              </a>
+            </p>
+            <p className={styles.infoItem}>
+              <strong>Nível de Preço:</strong> {getPriceLabel(place.price)}
+            </p>
+            <p className={styles.infoItem}>
+              <strong>Distância:</strong> {place.distance} km
+            </p>
           </div>
         )}
 

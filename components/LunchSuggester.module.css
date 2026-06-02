@@ -13,14 +13,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 50px;
-  min-height: 100%;
   justify-content: center;
+  gap: 50px;
   flex: 1;
 }
 
 .title {
-  font-size: 3.5rem;
+  font-size: 48px;
   font-weight: 800;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
@@ -32,7 +31,6 @@
 }
 
 .button {
-  display: inline-block;
   padding: 14px 32px;
   font-size: 16px;
   font-weight: 600;
@@ -43,7 +41,6 @@
   cursor: pointer;
   transition: all var(--transition-base);
   box-shadow: var(--shadow-md);
-  position: relative;
   overflow: hidden;
   text-transform: uppercase;
   letter-spacing: 0.5px;
@@ -114,6 +111,9 @@
   animation: slideUp 0.4s ease-out;
   border: 1px solid rgba(255, 107, 53, 0.1);
   overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .resultCard::before {
@@ -127,19 +127,9 @@
 }
 
 .restaurantName {
-  margin: 0 0 24px 0;
-  font-size: 2rem;
+  font-size: 32px;
   color: var(--color-primary);
   font-weight: 700;
-}
-
-.infoSection {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  font-size: 16px;
-  line-height: 1.8;
-  color: var(--color-text-secondary);
 }
 
 .infoItem {
@@ -150,33 +140,19 @@
   transition: background-color var(--transition-fast);
 }
 
-.infoItem:hover {
-  background-color: rgba(255, 107, 53, 0.05);
-}
-
 .infoItem strong {
-  font-weight: 700;
   color: var(--color-text-primary);
   min-width: 120px;
 }
 
 .infoItem a {
   color: var(--color-primary);
-  font-weight: 500;
   text-decoration: underline;
   transition: all var(--transition-fast);
 }
 
 .infoItem a:hover {
   color: var(--color-primary-dark);
-  text-decoration: none;
-}
-
-.placeholderText {
-  color: var(--color-text-secondary);
-  font-size: 16px;
-  margin-top: 20px;
-  font-style: italic;
 }
 
 .footer {
