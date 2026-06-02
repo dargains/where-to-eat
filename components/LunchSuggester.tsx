@@ -56,19 +56,13 @@ export default function LunchSuggester() {
         Bora almoçar, {phrase}
       </h1>
 
-      <div className={styles.buttonsSection}>
-        <button
-          onClick={handleGetSuggestion}
-          disabled={loading}
-          className={styles.button}
-        >
-          {loading ? "Que fome..." : place ? "Ahh esse não, quero outro" : "Dá-me um lugar faixavor!"}
-        </button>
-
-        <Link href="/add-place" className={styles.addLink}>
-          + Adicionar restaurante
-        </Link>
-      </div>
+      <button
+        onClick={handleGetSuggestion}
+        disabled={loading}
+        className={styles.button}
+      >
+        {loading ? "Que fome..." : place ? "Ahh esse não, quero outro" : "Dá-me um lugar faixavor!"}
+      </button>
 
       {place && (
         <div className={styles.resultCard}>
@@ -95,6 +89,10 @@ export default function LunchSuggester() {
           </div>
         </div>
       )}
+
+      <Link href="/add-place" className={styles.addLink}>
+        + Adicionar restaurante
+      </Link>
     </div>
   );
 }
