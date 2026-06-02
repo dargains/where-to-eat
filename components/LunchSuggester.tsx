@@ -51,48 +51,50 @@ export default function LunchSuggester() {
   };
 
   return (
-    <div className={styles.container}>
-      <h1 className={styles.title}>
-        Bora almoçar, {phrase}
-      </h1>
+    <div className={styles.wrapper}>
+      <div className={styles.container}>
+        <h1 className={styles.title}>
+          Bora almoçar, {phrase}
+        </h1>
 
-      <button
-        onClick={handleGetSuggestion}
-        disabled={loading}
-        className={styles.button}
-      >
-        {loading ? "Que fome..." : place ? "Ahh esse não, quero outro" : "Dá-me um lugar faixavor!"}
-      </button>
+        <button
+          onClick={handleGetSuggestion}
+          disabled={loading}
+          className={styles.button}
+        >
+          {loading ? "Que fome..." : place ? "Ahh esse não, quero outro" : "Dá-me um lugar faixavor!"}
+        </button>
 
-      {place && (
-        <div className={styles.resultCard}>
-          <h2 className={styles.restaurantName}>
-            {place.name}
-          </h2>
-          <div className={styles.infoSection}>
-            <p className={styles.infoItem}>
-              <strong>Endereço:</strong>{" "}
-              <a
-                href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {place.address}
-              </a>
-            </p>
-            <p className={styles.infoItem}>
-              <strong>Nível de Preço:</strong> {getPriceLabel(place.price)}
-            </p>
-            <p className={styles.infoItem}>
-              <strong>Distância:</strong> {place.distance} km
-            </p>
+        {place && (
+          <div className={styles.resultCard}>
+            <h2 className={styles.restaurantName}>
+              {place.name}
+            </h2>
+            <div className={styles.infoSection}>
+              <p className={styles.infoItem}>
+                <strong>Endereço:</strong>{" "}
+                <a
+                  href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {place.address}
+                </a>
+              </p>
+              <p className={styles.infoItem}>
+                <strong>Nível de Preço:</strong> {getPriceLabel(place.price)}
+              </p>
+              <p className={styles.infoItem}>
+                <strong>Distância:</strong> {place.distance} km
+              </p>
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <Link href="/add-place" className={styles.addLink}>
-        + Adicionar restaurante
-      </Link>
+        <Link href="/add-place" className={styles.addLink}>
+          + Adicionar restaurante
+        </Link>
+      </div>
       <footer className={styles.footer}>
         Made with 🍕 by André Dargains
       </footer>
