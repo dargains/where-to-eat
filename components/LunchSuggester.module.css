@@ -1,6 +1,5 @@
 .wrapper {
   min-height: 100vh;
-  background-color: var(--color-bg);
   display: flex;
   flex-direction: column;
   padding: 40px 20px;
