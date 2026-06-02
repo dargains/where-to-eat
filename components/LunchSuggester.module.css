@@ -76,11 +76,11 @@
   top: 20px;
   right: 20px;
   padding: 14px 32px;
-  font-size: 16px;
+  font-size: 12px;
   font-weight: 600;
   background-color: var(--color-text-white);
   color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  border: 1px solid var(--color-primary);
   border-radius: 12px;
   cursor: pointer;
   transition: all var(--transition-base);
@@ -169,6 +169,13 @@
   font-size: 16px;
   margin-top: 20px;
   font-style: italic;
+}
+
+.footer {
+  position: absolute;
+  bottom: 20px;
+  font-size: 14px;
+  color: #666;
 }
 
 @keyframes fadeInDown {
