@@ -88,7 +88,6 @@
   border-radius: 12px;
   cursor: pointer;
   transition: all var(--transition-base);
-  text-decoration: none;
   box-shadow: var(--shadow-sm);
   text-transform: uppercase;
   letter-spacing: 0.03125rem;

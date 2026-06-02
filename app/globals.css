@@ -69,7 +69,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--color-text-primary);
-  background: var(--gradient-light);
+  background: var(--color-bg-light);
 }
 
 h1,
