@@ -19,20 +19,20 @@
 }
 
 .title {
-  font-size: 48px;
+  font-size: 3rem;
   font-weight: 800;
   background: var(--gradient-primary);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  letter-spacing: -1px;
+  letter-spacing: -0.0625rem;
   margin-bottom: 10px;
   animation: fadeInDown 0.6s ease-out;
 }
 
 .button {
   padding: 14px 32px;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
   background: var(--gradient-primary);
   color: var(--color-text-white);
@@ -43,7 +43,7 @@
   box-shadow: var(--shadow-md);
   overflow: hidden;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
 }
 
 .button::before {
@@ -81,7 +81,7 @@
   top: 20px;
   right: 20px;
   padding: 14px 32px;
-  font-size: 12px;
+  font-size: 0.75rem;
   font-weight: 600;
   background-color: var(--color-text-white);
   color: var(--color-primary);
@@ -92,7 +92,7 @@
   text-decoration: none;
   box-shadow: var(--shadow-sm);
   text-transform: uppercase;
-  letter-spacing: 0.5px;
+  letter-spacing: 0.03125rem;
 }
 
 .addLink:hover {
@@ -127,7 +127,7 @@
 }
 
 .restaurantName {
-  font-size: 32px;
+  font-size: 2rem;
   color: var(--color-primary);
   font-weight: 700;
 }
@@ -156,7 +156,7 @@
 }
 
 .footer {
-  font-size: 14px;
+  font-size: 0.875rem;
   color: #666;
   text-align: center;
 }
