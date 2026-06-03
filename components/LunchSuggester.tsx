@@ -6,18 +6,18 @@ import { LunchPlaceDTO } from "@/lib/database";
 import styles from "./LunchSuggester.module.css";
 
 const LUNCH_PHRASES = [
-  "estou cheio de fome!",
-  "já são 12h!",
-  "é hora!",
-  "faz logo push!",
-  "fecha o portátil!",
-  "vamos logo!",
-  "tenho fome!",
-  "vamos lá!",
-  "não aguento mais esperar!",
-  "não como há horas!",
-  "estou com fome há muito tempo!",
-  "não consigo esperar mais!",
+  ", estou cheio de fome!",
+  ", já são 12h!",
+  ", é hora!",
+  ", faz logo push!",
+  ", fecha o portátil!",
+  ", vamos logo!",
+  ", tenho fome!",
+  ", vamos lá!",
+  ", não aguento mais esperar!",
+  ", não como há horas!",
+  ", estou com fome há muito tempo!",
+  ", não consigo esperar mais!",
 ];
 
 export default function LunchSuggester() {
@@ -54,7 +54,7 @@ export default function LunchSuggester() {
     <div className={styles.wrapper}>
       <div className={styles.container}>
         <h1 className={styles.title}>
-          Bora almoçar, {phrase}
+          Bora almoçar{phrase}
         </h1>
 
         <button
@@ -71,7 +71,7 @@ export default function LunchSuggester() {
               {place.name}
             </h2>
             <p className={styles.infoItem}>
-              <strong>Endereço:</strong>{" "}
+              <strong>Morada:</strong>{" "}
               <a
                 href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
                 target="_blank"
