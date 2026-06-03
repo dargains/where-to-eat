@@ -93,6 +93,9 @@ export default function LunchSuggester() {
           + Adicionar restaurante
         </Link>
       </div>
+      <Link href="/add-place" className={styles.addLinkMobile}>
+        ➕
+      </Link>
       <footer className={styles.footer}>
         Made with 🍕 by André Dargains
       </footer>
