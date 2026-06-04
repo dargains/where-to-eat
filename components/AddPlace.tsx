@@ -90,7 +90,7 @@ export default function AddPlace() {
       <form onSubmit={handleSubmit} className={styles.form}>
         <div className={styles.formGroup}>
           <label htmlFor="name" className={styles.label}>
-            Nome do Restaurante
+            Nome
           </label>
           <input
             type="text"
@@ -106,7 +106,7 @@ export default function AddPlace() {
 
         <div className={styles.formGroup}>
           <label htmlFor="address" className={styles.label}>
-            Endereço
+            Morada
           </label>
           <input
             type="text"

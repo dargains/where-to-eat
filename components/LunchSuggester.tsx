@@ -66,27 +66,26 @@ export default function LunchSuggester() {
         </button>
 
         {place && (
-          <div className={styles.resultCard}>
+          <a
+            className={styles.resultCard}
+            href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+
             <h2 className={styles.restaurantName}>
               {place.name}
             </h2>
             <p className={styles.infoItem}>
-              <strong>Morada:</strong>{" "}
-              <a
-                href={`https://www.google.com/maps/search/${encodeURIComponent(place.address)}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {place.address}
-              </a>
-            </p>
-            <p className={styles.infoItem}>
               <strong>Nível de Preço:</strong> {getPriceLabel(place.price)}
             </p>
             <p className={styles.infoItem}>
-              <strong>Distância:</strong> {place.distance} km
+              <strong>Morada:</strong> {place.address}
             </p>
-          </div>
+            <p className={styles.infoItem}>
+              <strong>Distância da Vodafone:</strong> {place.distance} km
+            </p>
+          </a>
         )}
 
         <Link href="/add-place" className={styles.addLink}>
