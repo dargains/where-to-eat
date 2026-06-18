@@ -20,10 +20,24 @@ const LUNCH_PHRASES = [
   ", não consigo esperar mais!",
 ];
 
+const FUNNY_INSULTS = [
+  "Deixa o pobre restaurante em paz! Está bloqueado!",
+  "5 vezes? Escolhe um e come! Bloqueado!",
+  "Que falta de decisão! Isto é um restaurante ou um videoclip? Bloqueado!",
+  "Pronto, bloqueado! Já deste 5 oportunidades à comida!",
+  "Tens muita coragem pedir mais! Está bloqueado, caro amigo!",
+  "5 chances é o suficiente! Vai com a primeira! Bloqueado!",
+  "Nem o Michelin pede tanto! Bloqueado!",
+  "Chega! Manda a moeda para o ar que fica melhor! Bloqueado!",
+];
+
 export default function LunchSuggester() {
   const [place, setPlace] = useState<LunchPlaceDTO | null>(null);
   const [loading, setLoading] = useState(false);
   const [phrase, setPhrase] = useState<string>("");
+  const [clickCount, setClickCount] = useState(0);
+  const [isBlocked, setIsBlocked] = useState(false);
+  const [blockMessage, setBlockMessage] = useState<string>("");
 
   useEffect(() => {
     const randomPhrase =
@@ -38,6 +52,19 @@ export default function LunchSuggester() {
   };
 
   const handleGetSuggestion = async () => {
+    if (isBlocked) return;
+
+    const newClickCount = clickCount + 1;
+    setClickCount(newClickCount);
+
+    if (newClickCount >= 5) {
+      setIsBlocked(true);
+      const randomInsult =
+        FUNNY_INSULTS[Math.floor(Math.random() * FUNNY_INSULTS.length)];
+      setBlockMessage(randomInsult);
+      return;
+    }
+
     setLoading(true);
     try {
       const response = await fetch("/api/random-place");
@@ -51,6 +78,7 @@ export default function LunchSuggester() {
   };
 
   const buttonLabel = () => {
+    if (isBlocked) return "🚫 Já chega!";
     if (loading) return "Que fome...";
     if (place) return "Ahh esse não, quero outro";
     return "Dá-me um lugar faixavor!";
@@ -65,11 +93,17 @@ export default function LunchSuggester() {
 
         <button
           onClick={handleGetSuggestion}
-          disabled={loading}
+          disabled={loading || isBlocked}
           className={styles.button}
         >
           {buttonLabel()}
         </button>
+
+        {isBlocked && (
+          <div className={styles.blockedMessage}>
+            <p className={styles.insult}>{blockMessage}</p>
+          </div>
+        )}
 
         {place && (
           <a
