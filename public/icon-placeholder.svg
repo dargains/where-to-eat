@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" width="192" height="192">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0070f3;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0051d5;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="192" height="192" fill="url(#grad1)"/>
+  
+  <!-- Fork and Spoon -->
+  <g transform="translate(96, 96)">
+    <!-- Fork -->
+    <rect x="-45" y="-50" width="8" height="90" rx="4" fill="white"/>
+    <circle cx="-41" cy="45" r="6" fill="white"/>
+    <rect x="-55" y="-35" width="6" height="35" rx="3" fill="white"/>
+    <rect x="-45" y="-35" width="6" height="35" rx="3" fill="white"/>
+    <rect x="-35" y="-35" width="6" height="35" rx="3" fill="white"/>
+    
+    <!-- Spoon -->
+    <path d="M 50 -50 Q 50 -20 45 0 L 40 50 Q 40 60 30 60 Q 20 60 20 50 L 15 0 Q 10 -20 10 -50" 
+          fill="none" stroke="white" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="96" y="175" font-size="16" font-weight="bold" fill="white" text-anchor="middle">Bora!</text>
+</svg>

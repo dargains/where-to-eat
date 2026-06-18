@@ -1,12 +1,21 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
+import PWAProvider from "@/components/PWAProvider";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0070f3",
+};
 
 export const metadata: Metadata = {
   title: "Bora almoçar!",
   description: "Get random lunch place suggestions",
-  viewport: "width=device-width, initial-scale=1",
+  manifest: "/manifest.json",
   icons: {
     icon: "/favicon.svg",
+    apple: "/icon-192.png",
   },
   authors: [{ name: "André Dargains" }],
   openGraph: {
@@ -16,7 +25,11 @@ export const metadata: Metadata = {
   },
   robots: "index, follow",
   keywords: ["lunch", "restaurants", "random", "suggestions"],
-  themeColor: "#ffffff",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Bora almoçar!",
+  },
 };
 
 export default function RootLayout({
@@ -26,7 +39,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <PWAProvider />
+      </body>
     </html>
   );
 }

@@ -50,6 +50,12 @@ export default function LunchSuggester() {
     }
   };
 
+  const buttonLabel = () => {
+    if (loading) return "Que fome...";
+    if (place) return "Ahh esse não, quero outro";
+    return "Dá-me um lugar faixavor!";
+  }
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -62,7 +68,7 @@ export default function LunchSuggester() {
           disabled={loading}
           className={styles.button}
         >
-          {loading ? "Que fome..." : place ? "Ahh esse não, quero outro" : "Dá-me um lugar faixavor!"}
+          {buttonLabel()}
         </button>
 
         {place && (
