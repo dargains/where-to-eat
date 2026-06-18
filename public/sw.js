@@ -1,5 +1,5 @@
-// Service Worker - Basic implementation
-const CACHE_NAME = 'where-to-eat-v1';
+// Service Worker - Updated with v2 cache
+const CACHE_NAME = 'where-to-eat-v2';
 const urlsToCache = [
   '/',
 ];
@@ -75,14 +75,10 @@ self.addEventListener('fetch', (event) => {
         })
     );
   } else {
-    // For pages and static assets, try cache first
+    // For pages and static assets, try network first
     event.respondWith(
-      caches.match(request).then((cached) => {
-        if (cached) {
-          return cached;
-        }
-
-        return fetch(request).then((response) => {
+      fetch(request)
+        .then((response) => {
           if (response && response.status === 200) {
             const responseToCache = response.clone();
             caches.open(CACHE_NAME).then((cache) => {
@@ -90,16 +86,15 @@ self.addEventListener('fetch', (event) => {
             });
           }
           return response;
-        });
-      }).catch(() => {
-        return new Response('Offline - Page not available', {
-          status: 503,
-          statusText: 'Service Unavailable',
-          headers: new Headers({
-            'Content-Type': 'text/plain'
-          })
-        });
-      })
+        })
+        .catch(() => {
+          return caches.match(request).then((cached) => {
+            return cached || new Response(
+              'Offline - Page not available',
+              { status: 503, statusText: 'Service Unavailable' }
+            );
+          });
+        })
     );
   }
 });
